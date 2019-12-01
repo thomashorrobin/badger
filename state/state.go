@@ -44,6 +44,7 @@ func (s *State) MoveForward() {
 		s.x++
 		break
 	}
+	s.robotLost = s.grid.hasRobotFallenOff(s.x, s.y)
 }
 
 // RotateLeft rotate the robot left

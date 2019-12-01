@@ -50,3 +50,14 @@ func TestReportRotateRight(t *testing.T) {
 		t.Error("direction was not updated correctly")
 	}
 }
+
+func TestRobotTravelsOffGridLost(t *testing.T) {
+	state := NewState(3, 3, 2, 2, East)
+	state.MoveForward()
+	state.MoveForward()
+	state.MoveForward()
+	state.MoveForward()
+	if state.ReportPosition() != "4 2 E LOST" {
+		t.Errorf("robot was meant to be at 4 2 E but was at %s", state.ReportPosition())
+	}
+}
