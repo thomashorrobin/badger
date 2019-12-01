@@ -46,6 +46,48 @@ func (s *State) MoveForward() {
 	}
 }
 
+// RotateLeft rotate the robot left
+func (s *State) RotateLeft() {
+	if s.robotLost {
+		return
+	}
+	switch s.direction {
+	case North:
+		s.direction = West
+		break
+	case South:
+		s.direction = East
+		break
+	case West:
+		s.direction = South
+		break
+	case East:
+		s.direction = North
+		break
+	}
+}
+
+// RotateRight rotate the robot right
+func (s *State) RotateRight() {
+	if s.robotLost {
+		return
+	}
+	switch s.direction {
+	case North:
+		s.direction = East
+		break
+	case South:
+		s.direction = West
+		break
+	case West:
+		s.direction = North
+		break
+	case East:
+		s.direction = South
+		break
+	}
+}
+
 // ReportPosition returns string of current possition
 func (s *State) ReportPosition() string {
 	if s.robotLost {

@@ -34,3 +34,19 @@ func TestReportPossitionLost(t *testing.T) {
 		t.Error("location was not reported as lost")
 	}
 }
+
+func TestReportRotateLeft(t *testing.T) {
+	state := NewState(3, 3, 2, 2, North)
+	state.RotateLeft()
+	if state.ReportPosition() != "2 2 W" {
+		t.Error("direction was not updated correctly")
+	}
+}
+
+func TestReportRotateRight(t *testing.T) {
+	state := NewState(3, 3, 2, 2, North)
+	state.RotateRight()
+	if state.ReportPosition() != "2 2 E" {
+		t.Error("direction was not updated correctly")
+	}
+}
