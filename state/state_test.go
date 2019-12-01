@@ -26,3 +26,11 @@ func TestReportPossition(t *testing.T) {
 		t.Error("reported location was not correct")
 	}
 }
+
+func TestReportPossitionLost(t *testing.T) {
+	state := NewState(2, 2, 3, 3, West)
+	possition := state.ReportPosition()
+	if possition != "3 3 W LOST" {
+		t.Error("location was not reported as lost")
+	}
+}
