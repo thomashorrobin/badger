@@ -1,5 +1,7 @@
 package state
 
+import "fmt"
+
 // State is where the robot is
 type State struct {
 	x         int
@@ -35,4 +37,9 @@ func (s *State) MoveForward() {
 		s.x++
 		break
 	}
+}
+
+// ReportPosition returns string of current possition
+func (s *State) ReportPosition() string {
+	return fmt.Sprintf("%d %d %s", s.x, s.y, s.direction)
 }

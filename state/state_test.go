@@ -18,3 +18,11 @@ func TestRobotMoveTwice(t *testing.T) {
 		t.Error("robot has not moved to the correct posstion")
 	}
 }
+
+func TestReportPossition(t *testing.T) {
+	state := NewState(3, 5, 3, 1, West)
+	possition := state.ReportPosition()
+	if possition != "3 1 W" {
+		t.Error("reported location was not correct")
+	}
+}
