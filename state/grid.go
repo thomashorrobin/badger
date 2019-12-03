@@ -6,5 +6,5 @@ type grid struct {
 }
 
 func (g *grid) hasRobotFallenOff(x int, y int) bool {
-	return x < 0 || y < 0 || y > g.y || x > g.x
+	return x < 0 || y < 0 || y >= g.y || x >= g.x
 }
