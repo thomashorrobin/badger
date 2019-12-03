@@ -5,8 +5,6 @@ import (
 	"errors"
 	"fmt"
 	"os"
-	"strconv"
-	"strings"
 
 	"./state"
 
@@ -19,18 +17,21 @@ func main() {
 	flags.Parse(&opts)
 
 	scanner := bufio.NewScanner(os.Stdin)
-	fmt.Print("grid size: ")
-	scanner.Scan()
-	gridSize := strings.Split(scanner.Text(), " ")
-	gridWidth, _ := strconv.Atoi(gridSize[0])
-	gridHeight, _ := strconv.Atoi(gridSize[1])
 
-	fmt.Print("initial possition: ")
-	for scanner.Scan() {
-		split := strings.Split(scanner.Text(), " ")
-		x, _ := strconv.Atoi(split[0])
-		y, _ := strconv.Atoi(split[1])
-		s := state.NewState(gridHeight, gridWidth, x, y, split[2])
+	gridWidth, gridHeight, err1 := askGridSize(scanner)
+
+	if err1 != nil {
+		fmt.Println(1)
+		return
+	}
+
+	for true {
+		x, y, dir, err3 := askInitialPossition(scanner)
+		if err3 != nil {
+			fmt.Println(err3.Error())
+			return
+		}
+		s := state.NewState(*gridHeight, *gridWidth, *x, *y, *dir)
 		if opts.Debug {
 			fmt.Println(s.ReportPosition())
 		}
@@ -47,7 +48,6 @@ func main() {
 			}
 		}
 		fmt.Println("final possition: ", s.ReportPosition())
-		fmt.Print("initial possition: ")
 	}
 }
 
